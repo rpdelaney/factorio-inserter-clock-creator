@@ -1,0 +1,1 @@
+TICKRATE: int = 60

@@ -1,0 +1,93 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "ficc"
+version = "0.1.0"
+description = "Generates factorio blueprints for inserter clocks."
+authors = ["Ryan Delaney <ryan.patrick.delaney+git@protonmail.com>"]
+license = "MIT"
+readme = "README.rst"
+repository = "https://github.com/rpdelaney/factorio-inserter-clock-creator"
+homepage = "https://pypi.org/project/ficc"
+packages = [{include = "ficc"}]
+
+[tool.poetry.scripts]
+ficc = "ficc.__main__:main"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+factorio-draftsman = "^1.0.2"
+
+[tool.poetry.group.dev.dependencies]
+black = "*"
+flake8 = ">=4.0.1"
+flake8-annotations-complexity = ">=0.0.6"
+flake8-bugbear = ">=21.9.2"
+flake8-comprehensions = ">=3.7.0"
+flake8-pie = "^0.16.0"
+flake8-simplify = ">=0.14.2"
+mypy = ">=0.981"
+pytest = ">=6.2.5"
+pytest-cov = ">=3.0.0"
+
+[tool.black]
+line-length = 79
+target_version = [ "py310",]
+
+[tool.isort]
+combine_star = true
+indent = "    "
+length_sort = false
+line_length = 79
+multi_line_output = 3
+include_trailing_comma = true  # this prevents isort from fighting with black
+
+[tool.mypy]
+# any
+disallow_any_decorated = true
+disallow_any_explicit = false
+disallow_any_expr = false
+disallow_any_generics = true
+disallow_any_unimported = true
+disallow_subclassing_any = true
+
+# untyped
+allow_untyped_globals = false
+check_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_calls = true
+disallow_untyped_decorators = true
+disallow_untyped_defs = true
+
+# optionals
+no_implicit_optional = true
+strict_optional = true
+
+# imports
+follow_imports = "normal"
+ignore_missing_imports = true
+
+warn_no_return = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+strict_equality = true
+
+# error formating
+pretty = true
+show_error_context = true
+show_column_numbers = true
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+module = ".venv.*"
+ignore_errors = true
