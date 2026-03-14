@@ -23,9 +23,9 @@ class InserterClock:
             .as_integer_ratio()
         )
 
-        self.__blueprint__ = Blueprint()
-        self.__blueprint__.label = "Clock"
-        self.__blueprint__.description = (
+        self._blueprint = Blueprint()
+        self._blueprint.label = "Clock"
+        self._blueprint.description = (
             f"Inserter clock for {self.items_per_second} items / second.\n"
             f"Stack size: {self.stack_size}"
         )
@@ -77,25 +77,25 @@ class InserterClock:
         )
 
         # build it up
-        self.__blueprint__.entities.append(self.red)
-        self.__blueprint__.entities.append(self.blu)
-        self.__blueprint__.entities.append(self.yel)
+        self._blueprint.entities.append(self.red)
+        self._blueprint.entities.append(self.blu)
+        self._blueprint.entities.append(self.yel)
 
         # wire it up
-        self.__blueprint__.add_circuit_connection(
+        self._blueprint.add_circuit_connection(
             color="green",
             entity_1="red",
             entity_2="blu",
             side2=1,
         )
-        self.__blueprint__.add_circuit_connection(
+        self._blueprint.add_circuit_connection(
             color="red",
             entity_1="blu",
             entity_2="blu",
             side1=2,
             side2=1,
         )
-        self.__blueprint__.add_circuit_connection(
+        self._blueprint.add_circuit_connection(
             color="green",
             entity_1="blu",
             entity_2="yel",
@@ -128,4 +128,4 @@ class InserterClock:
         self._stack_size = value
 
     def __str__(self) -> str:
-        return str(self.__blueprint__.to_string())
+        return str(self._blueprint.to_string())
